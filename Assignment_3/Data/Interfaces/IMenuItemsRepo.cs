@@ -11,5 +11,8 @@ namespace Assignment_3.Data.Interfaces
     {
         public IEnumerable<MenuItemReadDto> GetAll();
         public MenuItemReadDto GetById(int id);
+        public void Create(MenuItemCreateDto input);
+        public void Update(int id, MenuItemCreateDto input);
+        public void Delete(int id);
     }
 }

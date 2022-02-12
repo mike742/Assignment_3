@@ -42,20 +42,27 @@ namespace Assignment_3.Controllers
 
         // POST api/<MenuItemsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post(MenuItemCreateDto value)
         {
+            _repo.Create(value);
+            return Ok();
         }
 
         // PUT api/<MenuItemsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, MenuItemCreateDto value)
         {
+            _repo.Update(id, value);
+            return Ok();
         }
 
         // DELETE api/<MenuItemsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            _repo.Delete(id);
+
+            return Ok();
         }
     }
 }

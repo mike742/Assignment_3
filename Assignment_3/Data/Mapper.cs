@@ -9,6 +9,32 @@ namespace Assignment_3.Data
 {
     public class Mapper
     {
+        public ReservationReadDto Map(Reservation reservation)
+        {
+            return new ReservationReadDto { 
+                Id = reservation.Id,
+                Date = reservation.Date,
+                Name = reservation.Name
+            };
+        }
+        public MenuItem Map(MenuItemCreateDto input)
+        {
+            return new MenuItem
+            {
+                Name = input.Name,
+                Price = input.Price
+            };
+        }
+        //public MenuItemCreateDto Map(MenuItem input)
+        //{
+        //    return new MenuItemCreateDto
+        //    {
+        //        Name = input.Name,
+        //        Price = input.Price
+        //    };
+        //}
+
+
         public MenuItem Map(MenuItemReadDto input)
         {
             return new MenuItem { 

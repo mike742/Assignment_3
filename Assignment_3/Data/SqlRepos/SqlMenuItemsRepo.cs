@@ -17,6 +17,24 @@ namespace Assignment_3.Data.SqlRepos
         {
             _context = context;
         }
+
+        public void Create(MenuItemCreateDto input)
+        {
+            _context.Add(_mapper.Map(input));
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var menuItemInDb = _context.MenuItems.FirstOrDefault(mi => mi.Id == id);
+
+            if (menuItemInDb != null)
+            {
+                _context.Remove(menuItemInDb);
+                _context.SaveChanges();
+            }
+        }
+
         public IEnumerable<MenuItemReadDto> GetAll()
         {
             return _context.MenuItems.Select(mi => _mapper.Map(mi));
@@ -32,6 +50,18 @@ namespace Assignment_3.Data.SqlRepos
             }
 
             return null;
+        }
+
+        public void Update(int id, MenuItemCreateDto input)
+        {
+            var menuItemInDb = _context.MenuItems.FirstOrDefault(mi => mi.Id == id);
+
+            if (menuItemInDb != null) {
+                menuItemInDb.Name = input.Name;
+                menuItemInDb.Price = input.Price;
+
+                _context.SaveChanges();
+            }
         }
     }
 }
